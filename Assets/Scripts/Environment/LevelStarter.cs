@@ -14,6 +14,10 @@ public class LevelStarter : MonoBehaviour
     GameObject countDownGo;
     [SerializeField]
     GameObject fadeIn;
+    [SerializeField]
+    AudioSource readyFx;
+    [SerializeField]
+    AudioSource goFx;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +27,17 @@ public class LevelStarter : MonoBehaviour
     {
         yield return new WaitForSeconds(1.5f);
         countDown3.SetActive(true);
+        readyFx.Play();
         yield return new WaitForSeconds(1.0f);
         countDown2.SetActive(true);
+        readyFx.Play();
         yield return new WaitForSeconds(1.0f);
         countDown1.SetActive(true);
+        readyFx.Play();
         yield return new WaitForSeconds(1.0f);
         countDownGo.SetActive(true);
+        goFx.Play();
+        MomentScript.canMove = true;
        
     }
 

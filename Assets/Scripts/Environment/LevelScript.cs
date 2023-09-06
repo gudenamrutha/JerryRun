@@ -5,13 +5,15 @@ using UnityEngine;
 public class LevelScript : MonoBehaviour
 {
     [SerializeField]
-    GameObject[] environments;
+    GameObject[]  environment;
     [SerializeField]
     float Zpos = 12.5f;
     [SerializeField]
     bool creatingEnv = false;
     [SerializeField]
-    int envNum;
+    int envNum = 0;
+
+   
     // Start is called before the first frame update
     
     // Update is called once per frame
@@ -25,8 +27,8 @@ public class LevelScript : MonoBehaviour
     }
     IEnumerator GenerateEnvironment()
     {
-        envNum = Random.Range(0, 3);
-        Instantiate(environments[envNum], new Vector3(0,0,Zpos),Quaternion.identity);
+        envNum = Random.Range(0,environment.Length);
+        Instantiate(environment[envNum], new Vector3(0,0,Zpos),Quaternion.identity);
         Zpos += 65;
         yield return new WaitForSeconds(2);
         creatingEnv = false;

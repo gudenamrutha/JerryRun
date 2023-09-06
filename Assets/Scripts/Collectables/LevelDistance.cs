@@ -8,6 +8,8 @@ public class LevelDistance : MonoBehaviour
     [SerializeField]
     GameObject distanceToDisplay;
     [SerializeField]
+    GameObject distanceEndToDisplay;
+    [SerializeField]
     bool addingDistance = false;
     public int disRun = 0;
     [SerializeField]
@@ -26,6 +28,7 @@ public class LevelDistance : MonoBehaviour
     {
         disRun++;
         distanceToDisplay.GetComponent<TextMeshProUGUI>().text = disRun.ToString();
+        distanceEndToDisplay.GetComponent<TextMeshProUGUI>().text = disRun.ToString();
         yield return new WaitForSeconds(disDelay);
         addingDistance = false;
     }

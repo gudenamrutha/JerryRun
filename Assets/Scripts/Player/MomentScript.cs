@@ -11,6 +11,7 @@ public class MomentScript : MonoBehaviour
     float leftSide;
     [SerializeField]
     float rightSide;
+    public static bool canMove = false;
     void Start()
     {
         
@@ -19,18 +20,22 @@ public class MomentScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed, Space.World);
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (canMove)
         {
-            if (this.gameObject.transform.position.x > leftSide)
+            transform.Translate(Vector3.forward * Time.deltaTime * movementSpeed, Space.World);
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
-                transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
+                if (this.gameObject.transform.position.x > leftSide)
+                {
+                    transform.Translate(Vector3.left * Time.deltaTime * movementSpeed);
+                }
             }
-        }
-        if(Input.GetKey(KeyCode.RightArrow)) {
-            if (this.gameObject.transform.position.x < rightSide)
+            if (Input.GetKey(KeyCode.RightArrow))
             {
-                transform.Translate(Vector3.right * Time.deltaTime * movementSpeed);
+                if (this.gameObject.transform.position.x < rightSide)
+                {
+                    transform.Translate(Vector3.right * Time.deltaTime * movementSpeed);
+                }
             }
         }
     }
