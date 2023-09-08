@@ -12,6 +12,12 @@ public class MomentScript : MonoBehaviour
     [SerializeField]
     float rightSide;
     public static bool canMove = false;
+    [SerializeField]
+    bool isJumping = false;
+    [SerializeField]
+    bool comingDown = false;
+    [SerializeField]
+    GameObject charModel;
     void Start()
     {
         
@@ -37,6 +43,34 @@ public class MomentScript : MonoBehaviour
                     transform.Translate(Vector3.right * Time.deltaTime * movementSpeed);
                 }
             }
+            if(Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.Space) ){
+                if(isJumping == false)
+                {
+                    isJumping = true;
+                    charModel.GetComponent<Animator>().Play("Jump");
+                    StartCoroutine(JumpSequence());
+                }
+            }
         }
+        if(isJumping == true)
+        {
+            if(comingDown == false)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * 8,Space.World);
+            }
+            if (comingDown == true)
+            {
+                transform.Translate(Vector3.up * Time.deltaTime * -8, Space.World);
+            }
+        }
+    }
+    IEnumerator JumpSequence()
+    {
+        yield return new WaitForSeconds(0.75f);
+        comingDown = true;
+        yield return new WaitForSeconds(0.75f);
+        isJumping = false;
+        comingDown = false;
+        charModel.GetComponent<Animator>().Play("Medium Run");
     }
 }

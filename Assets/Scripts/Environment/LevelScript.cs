@@ -30,7 +30,7 @@ public class LevelScript : MonoBehaviour
         envNum = Random.Range(0,environment.Length);
         Instantiate(environment[envNum], new Vector3(0,0,Zpos),Quaternion.identity);
         Zpos += 65;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(12);
         creatingEnv = false;
     }
 }
